@@ -1,0 +1,6 @@
+.DS_Store
+*.jpg
+*.gif
+jquery*js
+*~
+*bak
