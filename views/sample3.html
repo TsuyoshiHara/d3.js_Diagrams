@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>chord-diagram sample</title>
+        <style>
+
+        #diagram {
+            height : 500px;
+        }
+        .node rect {
+            cursor          : move;
+            fill-opacity    : .9;
+            shape-rendering : crispEdges;
+        }
+        .node text {
+            pointer-events : none;
+            text-shadow    : 0 1px 0 #FFFFFF;
+        }
+        .link {
+            fill           : none;
+            stroke         : #000000;
+            stroke-opacity : .2;
+            fill-opacity   : .2;
+        }
+        .link:hover {
+            stroke : rgb(204,0,25);
+        }
+
+        </style>
+    </head>
+    <body>
+        <h2>chord-diagram</h2>
+        <div id='diagram'></div>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../js/sample3.js" charset="utf-8"></script>
+    </body>
+</html>
