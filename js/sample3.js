@@ -28,23 +28,31 @@ console.log(chord.groups());
 console.log(chord.chords());
 
 // グループ
-var groups = svg.selectAll('path.groups')
+var groups = svg.append('g')
+    .selectAll('.group')
     .data(chord.groups)
     .enter()
-    .append('path')
+    .append('g')
+    .attr('class', 'group');
+
+groups.append('path')
+    .attr('id', function(d) { return 'path_' + d.index; } );
     .style('fill', function(d) { return color[d.index]; } )
     .style('stroke', function(d) { return color[d.index]; } )
-    .attr('d', d3.svg.arc().innerRadius(90).outerRadius(100));
+    .attr('d', d3.svg.arc().innerRadius(90).outerRadius(100))
 
-// グループにタイトルつける
-// groups.append('text')
-//     .attr({
-//           'x' : 5
-//         , 'y' : function(d) { return (d.startAngle + d.endAngle) / 2; }
-//         , 'dy' : '.35em'
-//         , 'text-anchor' : 'start'
-//         , 'transform' : null
-//     }).text( function(d){ return d.index; } );
+// グループにラベルをつける
+groups.append('text')
+    .attr({
+          'x' : 10
+        , 'dy' : 10
+        , 'font-size' : '.6em'
+    })
+    .append('textPath')
+    .attr({
+        "xlink:href" : function(d) { return '#path_' + d.index; }
+    })
+    .text( function(d){ return d.index; } );
 
 // 相関
 var chords = svg.selectAll('path.chord')
