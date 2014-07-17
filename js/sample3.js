@@ -24,8 +24,8 @@ var chord = d3.layout.chord()
         .padding(0.1)
         .matrix(data);
 
-console.log(chord.groups());
-console.log(chord.chords());
+// console.log(chord.groups());
+// console.log(chord.chords());
 
 // グループ
 var groups = svg.append('g')
@@ -36,16 +36,16 @@ var groups = svg.append('g')
     .attr('class', 'group');
 
 groups.append('path')
-    .attr('id', function(d) { return 'path_' + d.index; } );
+    .attr('id', function(d) { return 'path_' + d.index; } )
     .style('fill', function(d) { return color[d.index]; } )
     .style('stroke', function(d) { return color[d.index]; } )
-    .attr('d', d3.svg.arc().innerRadius(90).outerRadius(100))
+    .attr('d', d3.svg.arc().innerRadius(90).outerRadius(100));
 
 // グループにラベルをつける
 groups.append('text')
     .attr({
           'x' : 10
-        , 'dy' : 10
+        , 'dy' : 9
         , 'font-size' : '.6em'
     })
     .append('textPath')
@@ -61,6 +61,7 @@ var chords = svg.selectAll('path.chord')
     .append('path')
     .style('fill', function(d) { return color[d.source.index]; } )
     .attr('d', d3.svg.chord().radius(90))
+    .attr('class', function(d) { return 'chord source_' + d.source.index; })
     .style('opacity', 0.5);
 
 // 相関にタイトル
